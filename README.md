@@ -1,63 +1,59 @@
 # apm-demo
 
-A barebones [APM](https://microsoft.github.io/apm/) marketplace — a Git repo that hosts reusable agent **skills**. Consumers install skills by referencing this GitHub repo.
+A barebones [APM](https://microsoft.github.io/apm/) marketplace — one Git repo hosting **multiple packages**. Each folder under `packages/` is an independently installable, independently versioned bundle of agent **skills**. Consumers install a package by referencing this repo.
 
 ## Layout
 
 ```
-apm.yml                              # marketplace manifest
-.apm/skills/<name>/SKILL.md          # one folder per skill
+packages/
+  <package>/
+    apm.yml                        # package manifest (name, version)
+    .apm/skills/<skill>/SKILL.md   # one folder per skill
+README.md
 ```
 
-Currently ships one skill: `hello-world`.
+Packages: `hello` (skill `hello-world`), `echo` (skill `echo`).
 
 ## Use it
 
-Install the APM CLI (once):
+Install the APM CLI once:
 
 ```bash
 curl -sSL https://aka.ms/apm-unix | sh    # Windows: irm https://aka.ms/apm-windows | iex
 ```
 
-Install a single skill from this repo into your project:
+Install a package from this repo into your project:
 
 ```bash
-apm install wietsche/apm_demo --skill hello-world
+apm install wietsche/apm_demo/packages/hello
 ```
 
-Or install every skill in the marketplace:
+Pin a version (a repo git tag), or pull just one skill from a package:
 
 ```bash
-apm install wietsche/apm_demo
+apm install wietsche/apm_demo/packages/hello#v1.0.0
+apm install wietsche/apm_demo/packages/hello --skill hello-world
 ```
 
-Or pin it as a dependency in your own `apm.yml`, then run `apm install`:
+Or declare it in your own `apm.yml`, then run `apm install`:
 
 ```yaml
 dependencies:
   apm:
-    - wietsche/apm_demo#v1.0.0    # omit #tag to track main
+    - wietsche/apm_demo/packages/hello#v1.0.0    # omit #tag to track main
 ```
 
-## Contribute a skill
+## Add a package
 
-1. Create `.apm/skills/<your-skill>/SKILL.md`.
-2. Add YAML frontmatter — `name` must equal the folder name; `description` must start with "Use when" and state the trigger:
-
-   ```markdown
-   ---
-   name: your-skill
-   description: Use when <trigger>. <What it does.>
-   ---
-
-   # Your Skill
-
-   Instructions the agent follows when this skill is invoked.
-   ```
-
-3. Keep `SKILL.md` under 500 lines. Optional `scripts/`, `references/`, `assets/`, `examples/` folders sit alongside it.
-4. Bump `version` in `apm.yml`, then commit, tag, and push:
+1. Copy a folder under `packages/` to `packages/<your-package>/`.
+2. Give it a unique `name` and a `version` in its `apm.yml`.
+3. Put skills under `.apm/skills/<skill>/SKILL.md`. In each `SKILL.md`, `name` must equal the skill folder name and `description` must start with "Use when".
+4. Commit, tag, and push:
 
    ```bash
-   git add . && git commit -m "Add your-skill" && git tag v1.1.0 && git push --tags
+   git add . && git commit -m "Add <your-package>" && git tag v1.1.0 && git push --tags
    ```
+
+## Versioning
+
+Each package sets its own `version` in `apm.yml`. Consumers pin against the **repo's git tags** (`#v1.2.3`), so cut a tag whenever you publish. To version a package fully independently of the others, give it its own repo.

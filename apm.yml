@@ -1,9 +1,0 @@
-name: apm-demo
-version: 1.0.0
-description: A barebones APM marketplace of reusable agent skills.
-author: wietsche
-license: MIT
-includes: auto
-dependencies:
-  apm: []
-  mcp: []
