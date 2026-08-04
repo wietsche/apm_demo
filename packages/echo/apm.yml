@@ -1,0 +1,3 @@
+name: echo
+version: "1.0.0"
+description: Example skill that repeats input back.
