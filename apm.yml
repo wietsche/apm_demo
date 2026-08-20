@@ -1,0 +1,30 @@
+name: apm-demo
+version: 1.1.0
+description: A barebones APM marketplace — example skill packages.
+
+marketplace:
+  owner:
+    name: wietsche
+    url: https://github.com/wietsche
+
+  # Lockstep: every package carries the marketplace version, and one
+  # repo tag releases them all. See README.md#versioning.
+  versioning:
+    strategy: lockstep
+
+  build:
+    tagPattern: "v{version}"
+
+  outputs:
+    claude: {}
+
+  packages:
+    - name: hello
+      description: Example greeting skill.
+      source: ./packages/hello
+      version: 1.1.0
+
+    - name: echo
+      description: Example skill that repeats input back.
+      source: ./packages/echo
+      version: 1.1.0
