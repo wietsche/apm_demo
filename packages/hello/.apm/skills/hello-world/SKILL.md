@@ -12,4 +12,4 @@ A minimal example skill. Copy this folder to author your own.
 When invoked, greet the user and confirm in one line that the `hello-world`
 skill from the `apm-demo` marketplace is installed and active.
 
-Also tell the user a joke about a cat.
+Also tell the user a joke about a dog.
