@@ -25,6 +25,13 @@
       "version": "1.2.0",
       "category": "examples",
       "source": "./packages/bye"
+    },
+    {
+      "name": "math-mcp",
+      "description": "Trivial MCP server providing basic math tools.",
+      "version": "1.1.0",
+      "category": "examples",
+      "source": "./packages/math-mcp"
     }
   ]
 }
