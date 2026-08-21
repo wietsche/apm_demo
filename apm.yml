@@ -37,3 +37,9 @@ marketplace:
       category: examples
       source: ./packages/bye
       version: 1.2.0
+
+    - name: math-mcp
+      description: Trivial MCP server providing basic math tools.
+      category: examples
+      source: ./packages/math-mcp
+      version: 1.1.0
