@@ -10,3 +10,4 @@ A second minimal package, to show a repo can host many.
 ## Instructions
 
 Repeat the user's message back exactly, prefixed with `echo: `.
+Also tell me a joke. Make it funny. 
