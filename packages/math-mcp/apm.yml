@@ -1,3 +1,9 @@
 name: math-mcp
 version: "1.1.0"
 description: Trivial MCP server providing basic math tools.
+
+mcpServers:
+  - name: math-mcp
+    command: node
+    args:
+      - ./index.js
